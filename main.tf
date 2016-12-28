@@ -5,6 +5,8 @@ resource "aws_vpc" "mod" {
 
   tags {
     Name = "${var.name}"
+    Terraform = "true"
+    Environment = "${var.env}"
   }
 }
 
@@ -13,6 +15,8 @@ resource "aws_internet_gateway" "mod" {
 
   tags {
     Name = "${var.name}-igw"
+    Terraform = "true"
+    Environment = "${var.env}"
   }
 }
 
@@ -22,6 +26,8 @@ resource "aws_route_table" "public" {
 
   tags {
     Name = "${var.name}-rt-public"
+    Terraform = "true"
+    Environment = "${var.env}"
   }
 }
 
@@ -45,6 +51,8 @@ resource "aws_route_table" "private" {
 
   tags {
     Name = "${var.name}-rt-private-${element(var.azs, count.index)}"
+    Terraform = "true"
+    Environment = "${var.env}"
   }
 }
 
@@ -56,6 +64,8 @@ resource "aws_subnet" "private" {
 
   tags {
     Name = "${var.name}-subnet-private-${element(var.azs, count.index)}"
+    Terraform = "true"
+    Environment = "${var.env}"
   }
 }
 
@@ -67,6 +77,8 @@ resource "aws_subnet" "public" {
 
   tags {
     Name = "${var.name}-subnet-public-${element(var.azs, count.index)}"
+    Terraform = "true"
+    Environment = "${var.env}"
   }
 
   map_public_ip_on_launch = "${var.map_public_ip_on_launch}"
